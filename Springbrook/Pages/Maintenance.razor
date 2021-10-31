@@ -1,0 +1,65 @@
+﻿@page "/maintenance"
+@using Springbrook.ViewModels
+@inherits MaintenanceBase
+
+<div class="row mt-3">
+    <div class="col-md-4 offset-md-4">
+
+        <EditForm Model="maintenanceVM" OnValidSubmit="Save">
+            <ObjectGraphDataAnnotationsValidator />
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="submit" class="btn btn-primary">
+                    <i class="far fa-save mr-2"></i> Save
+                </button>
+                <button type="button" class="btn btn-warning" @onclick="ToggleSettings">
+                    <i class="fas fa-tools mr-2"></i> Settings
+                </button>
+                <button type="button" class="btn btn-danger" @onclick="ResetForm">
+                    <i class="fas fa-redo mr-2"></i> Reset
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Maintenance
+                </div>
+                <div class="card-body">
+                    @foreach (var fc in maintenanceVM.FormControls)
+                    {
+                        <div class="row mt-3">
+                            @if (InSettingMode)
+                            {
+                                <div class="col-2">
+                                    <InputNumber @bind-Value="fc.Order" class="form-control" />
+                                    <ValidationMessage For="() => fc.IsValid" />
+                                </div>
+                            }
+                            <div class="col-3">
+                                <label class="col-form-label">@fc.Label:</label>
+                            </div>
+                            <div class="col">
+                                <InputText @bind-Value="fc.Value" class="form-control" />
+                                @*@switch (fc.Type)
+                                    {
+                                        case FormControlType.Text:
+                                            <InputText @bind-Value="fc.Value" class="form-control" />
+                                            break;
+
+                                        case FormControlType.Number:
+                                            <InputNumber @bind-Value="fc.Value" class="form-control" />
+                                            break;
+
+                                        case FormControlType.DateTime:
+                                            <InputDate @bind-Value="fc.Value" class="form-control" />
+                                            break;
+                                    }*@
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </EditForm>
+
+    </div>
+</div>
