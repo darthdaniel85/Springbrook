@@ -1,30 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Springbrook.ViewModels
 {
-    public enum FormControlType
-    {
-        Text,
-        Number,
-        DateTime,
-        Currency
-    }
-
     public class FormControlViewModel : IComparable<FormControlViewModel>
     {
         public Guid Id { get; set; } = Guid.NewGuid();
-        
+
         public string Label { get; set; }
 
-        public FormControlType Type { get; set; } = FormControlType.Text;
-
-        public string Value { get; set; }
-        
-        public int? Order { get; set; }
+        public int? Order { get; set; } = 0;
 
         public bool IsRequired { get; set; } = false;
 
@@ -36,5 +22,24 @@ namespace Springbrook.ViewModels
         {
             return Order?.CompareTo(other?.Order) ?? 0;
         }
+    }
+
+    public class FormControlTextViewModel : FormControlViewModel
+    {
+        public string Value { get; set; } = string.Empty;
+    }
+
+    public class FormControlNumberViewModel : FormControlViewModel
+    {
+        public int Value { get; set; }
+
+        public string PlaceHolder { get; set; } = "0000000";
+    }
+
+    public class FormControlDateTimeViewModel : FormControlViewModel
+    {
+        public DateTime Value { get; set; } = DateTime.Now;
+
+        public string Mask { get; set; } = " / / ";
     }
 }

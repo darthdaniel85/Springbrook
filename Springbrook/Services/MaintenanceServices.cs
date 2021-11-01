@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Springbrook.ViewModels;
+﻿using Springbrook.ViewModels;
 
 namespace Springbrook.Services
 {
@@ -13,54 +8,62 @@ namespace Springbrook.Services
         {
             var maintenanceForm = new MaintenanceFormViewModel();
 
-            var an = new FormControlViewModel()
+            var an = new FormControlNumberViewModel()
             {
                 Label = "Account Number",
-                Value = "000000",
-                Type = FormControlType.Number,
                 IsRequired = true
             };
             maintenanceForm.FormControls.Add(an);
 
-            var ad = new FormControlViewModel()
+            var ad = new FormControlTextViewModel()
             {
-                Label = "Account Description",
-                Value = string.Empty
+                Label = "Account Description"
             };
             maintenanceForm.FormControls.Add(ad);
 
-            var cn = new FormControlViewModel()
+            var cn = new FormControlNumberViewModel()
             {
-                Label = "Customer Number",
-                Value = "000000",
-                Type = FormControlType.Number
+                Label = "Customer Number"
             };
             maintenanceForm.FormControls.Add(cn);
 
-            var cna = new FormControlViewModel()
+            var cna = new FormControlTextViewModel()
             {
-                Label = "Customer Name",
-                Value = string.Empty
+                Label = "Customer Name"
             };
             maintenanceForm.FormControls.Add(cna);
 
-            var td = new FormControlViewModel()
+            var td = new FormControlDateTimeViewModel()
             {
                 Label = "Transaction Date",
-                Value = DateTime.Now.ToString(CultureInfo.InvariantCulture),
-                Type = FormControlType.DateTime,
                 IsRequired = true
             };
             maintenanceForm.FormControls.Add(td);
 
-            var dd = new FormControlViewModel()
+            var dd = new FormControlDateTimeViewModel()
             {
                 Label = "Due Date",
-                Type = FormControlType.DateTime,
                 IsRequired = true
             };
             maintenanceForm.FormControls.Add(dd);
 
+            var rn = new FormControlNumberViewModel()
+            {
+                Label = "Reference Number"
+            };
+            maintenanceForm.FormControls.Add(rn);
+
+            var ab = new FormControlNumberViewModel()
+            {
+                Label = "Account Balance"
+            };
+            maintenanceForm.FormControls.Add(ab);
+
+            var ac = new FormControlNumberViewModel()
+            {
+                Label = "Outstanding Credit"
+            };
+            maintenanceForm.FormControls.Add(ac);
 
             return maintenanceForm;
         }

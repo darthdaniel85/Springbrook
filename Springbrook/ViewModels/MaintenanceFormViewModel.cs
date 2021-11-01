@@ -10,5 +10,6 @@ namespace Springbrook.ViewModels
 
         [ValidateComplexType]
         public List<FormControlViewModel> FormControls { get; set; } = new();
+
     }
 }
